@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "c_file_generator.h": "c",
+        "html_file_generator.h": "c",
+        "txt_file_generator.h": "c",
+        "csv_reader.h": "c",
+        "common.h": "c",
+        "string.h": "c",
+        "stdlib.h": "c"
+    }
+}
