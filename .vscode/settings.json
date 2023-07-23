@@ -1,5 +1,9 @@
 {
     "files.associations": {
-        "ipfuncs.h": "c"
+        "ipfuncs.h": "c",
+        "cmd_line_parser.h": "c",
+        "plugin_text.h": "c",
+        "plugin_headers.h": "c",
+        "plugin_links.h": "c"
     }
 }

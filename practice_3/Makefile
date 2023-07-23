@@ -6,9 +6,7 @@ CFLAGS = -Wall -Wextra
 
 RM = rm -rf
 
-SRCS = main.c txt_file_generator.c html_file_generator.c  c_file_generator.c csv_reader.c cmd_line_parser.c 
-
-DEFAULT = default.c default.txt default.html default.o
+SRCS = main.c html_parser.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -21,4 +19,4 @@ $(TARGET): $(OBJS)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	$(RM) $(OBJS) $(TARGET) $(DEFAULT)
+	$(RM) $(OBJS) $(TARGET)

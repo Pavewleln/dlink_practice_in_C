@@ -61,28 +61,16 @@ void is_broadcast_ip_address(char *ip_addr)
 // Проверка на совпадение с ip-адресами типа "network"
 void is_network_ip_address(IpAddress ip)
 {
-    if (is_in_network(ip, network1) == 1)
-    {
-        printf("Ip-адрес %s соответствует сетевому адресу network1, то есть %s \n", ip.ip_addr, network1.ip_addr);
-        return;
-    }
-    if (is_in_network(ip, network2) == 1)
-    {
-        printf("Ip-адрес %s соответствует сетевому адресу network2, то есть %s \n", ip.ip_addr, network2.ip_addr);
-        return;
-    }
-    if (is_in_network(ip, network3) == 1)
-    {
-        printf("Ip-адрес %s соответствует сетевому адресу network3, то есть %s \n", ip.ip_addr, network3.ip_addr);
-        return;
-    }
-    if (is_in_network(ip, network4) == 1)
-    {
-        printf("Ip-адрес %s соответствует сетевому адресу network4, то есть %s \n", ip.ip_addr, network4.ip_addr);
-        return;
-    }
-
-    printf("Ip-адрес %s не соответствует ни одной из сетей\n", ip.ip_addr);
+    if (is_in_network(ip, network1))
+        printf("Сетевой адрес %s соответствует сетевому адресу network1, то есть %s \n", ip.ip_addr, network1.ip_addr);
+    else if (is_in_network(ip, network2))
+        printf("Сетевой адрес %s соответствует сетевому адресу network2, то есть %s \n", ip.ip_addr, network2.ip_addr);
+    else if (is_in_network(ip, network3))
+        printf("Сетевой адрес %s соответствует сетевому адресу network3, то есть %s \n", ip.ip_addr, network3.ip_addr);
+    else if (is_in_network(ip, network4))
+        printf("Сетевой адрес %s соответствует сетевому адресу network4, то есть %s \n", ip.ip_addr, network4.ip_addr);
+    else
+        printf("Сетевой адрес %s не соответствует ни одной из сетей\n", ip.ip_addr);
 }
 
 int is_in_network(IpAddress ip, IpAddress network)
