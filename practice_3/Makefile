@@ -6,7 +6,7 @@ CFLAGS = -Wall -Wextra
 
 RM = rm -rf
 
-SRCS = main.c html_parser.c
+SRCS = main.c plugins.c
 
 OBJS = $(SRCS:.c=.o)
 
