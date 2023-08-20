@@ -6,17 +6,22 @@ CFLAGS = -Wall -Wextra
 
 RM = rm -rf
 
-SRCS = main.c plugins.c
+SRCS = main.c
 
 OBJS = $(SRCS:.c=.o)
 
+LIBRARY = plugins.a
+
 all: $(TARGET)
 
-$(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) $^ -o $@
+$(TARGET): $(OBJS) $(LIBRARY)
+	$(CC) $(CFLAGS) $(OBJS) -L. -lplugins -o $@
+
+$(LIBRARY): plugins.o
+	ar rcs $@ $^
 
 %.o: %.c include/*.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	$(RM) $(OBJS) $(TARGET)
+	$(RM) $(OBJS) $(LIBRARY) $(TARGET)
