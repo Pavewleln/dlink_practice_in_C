@@ -1,7 +1,7 @@
 #include "include/c_file_generator.h"
 
 // Функция для генерации файла на языке C
-int generate_c_file(const char* file_name, const csv_data_t* csv_data) {
+void generate_c_file(const char* file_name, const csv_data_t* csv_data) {
     FILE* fp = fopen(file_name, "w");
     if (fp == NULL) {
         return -1;
@@ -18,5 +18,4 @@ int generate_c_file(const char* file_name, const csv_data_t* csv_data) {
     fprintf(fp, "\treturn 0;\n");
     fprintf(fp, "}\n");
     fclose(fp);
-    return 0;
 }

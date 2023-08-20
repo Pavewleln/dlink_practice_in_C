@@ -11,7 +11,7 @@ int main(int argc, char **argv)
 
     if (argc != 4)
     {
-        fprintf(stderr, "Usage: %s <plugin> <filename> <library>\n", argv[0]);
+        fprintf(stderr, "Usage: %s <plugin>(text, headers, links) <filename> <library>\n", argv[0]);
         return 1;
     }
 

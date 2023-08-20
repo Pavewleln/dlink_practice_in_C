@@ -5,6 +5,8 @@
     "plugin_text.h": "c",
     "plugin_headers.h": "c",
     "plugin_links.h": "c",
-    "plugins.h": "c"
+    "plugins.h": "c",
+    "c_file_generator.h": "c",
+    "txt_file_generator.h": "c"
   }
 }

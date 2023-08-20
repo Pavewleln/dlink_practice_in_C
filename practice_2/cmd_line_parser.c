@@ -8,9 +8,6 @@ int parse_cmd_line(int argc, char* argv[], char** output_file_name, int* output_
     if(strcmp(argv[2], "-o") != 0) {
         return -2;
     }
-    if(atoi(argv[4]) < 1 || atoi(argv[4]) > 3) {
-        return -3;
-    }
     *output_file_name = argv[3];
     *output_file_type = atoi(argv[4]);
     return 0;

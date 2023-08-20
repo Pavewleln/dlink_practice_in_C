@@ -1,7 +1,7 @@
 #include "include/txt_file_generator.h"
 
 // Функция для генерации текстового файла без запятых
-int generate_txt_file(const char* file_name, const csv_data_t* csv_data) {
+void generate_txt_file(const char* file_name, const csv_data_t* csv_data) {
     FILE* fp = fopen(file_name, "w");
     if (fp == NULL) {
         return -1;
@@ -16,5 +16,4 @@ int generate_txt_file(const char* file_name, const csv_data_t* csv_data) {
         fprintf(fp, "\n");
     }
     fclose(fp);
-    return 0;
 }

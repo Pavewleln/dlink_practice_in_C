@@ -13,37 +13,33 @@ int main(int argc, char *argv[])
     int parse_cmd_result = parse_cmd_line(argc, argv, &output_file_name, &output_file_type);
     if (parse_cmd_result != 0)
     {
-        printf("Use the notation: %s input_file_name -o output_file_name output_file_type\n", argv[0]);
+        printf("Use the notation: %s input_file_name -o output_file_name output_file_type(txt, html, c)\n", argv[0]);
         return parse_cmd_result;
     }
 
-    csv_data_t* csv_data = read_csv_file(input_file_name);
+    csv_data_t *csv_data = read_csv_file(input_file_name);
     if (csv_data == NULL)
     {
         printf("Error: file %s if empty \n", input_file_name);
         return -4;
     }
 
-    int generate_result;
-    switch (output_file_type) {
-        case OUTPUT_FILE_TYPE_C:
-            generate_result = generate_c_file(output_file_name, csv_data);
-            break;
-        case OUTPUT_FILE_TYPE_TXT:
-            generate_result = generate_txt_file(output_file_name, csv_data);
-            break;
-        case OUTPUT_FILE_TYPE_HTML:
-            generate_result = generate_html_file(output_file_name, csv_data);
-            break;
-        default:
-            printf("Error: invalid output file type %d\n", output_file_type);
-            return -5;
-    }
-
-    if (generate_result != 0)
+    if (strcmp(argv[4], "c") == 0)
     {
-        printf("Error: could not generate output file %s\n", output_file_name);
-        return -6;
+        generate_c_file(output_file_name, csv_data);
+    }
+    else if (strcmp(argv[4], "txt") == 0)
+    {
+        generate_txt_file(output_file_name, csv_data);
+    }
+    else if (strcmp(argv[4], "html") == 0)
+    {
+        generate_html_file(output_file_name, csv_data);
+    }
+    else
+    {
+        printf("Error: invalid output file type %d\n", output_file_type);
+        return -5;
     }
     printf("Successfully generated output file %s\n", output_file_name);
     return 0;
