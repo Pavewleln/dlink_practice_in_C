@@ -1,9 +1,0 @@
-{
-    "files.associations": {
-        "stdio.h": "c",
-        "cmd_line_parser.h": "c",
-        "unistd.h": "c",
-        "plugin_links.h": "c",
-        "html_parser.h": "c"
-    }
-}
