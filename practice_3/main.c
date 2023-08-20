@@ -1,16 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "include/plugins.h"
+#include <dlfcn.h>
+typedef void (*PluginFunction)(char *, size_t, FILE *);
 
 int main(int argc, char **argv)
 {
     char *html = NULL;
     size_t html_size = 0;
 
-    if (argc != 3)
+    if (argc != 4)
     {
-        fprintf(stderr, "Usage: %s <plugin> <filename>\n", argv[0]);
+        fprintf(stderr, "Usage: %s <plugin> <filename> <library>\n", argv[0]);
         return 1;
     }
 
@@ -35,24 +36,18 @@ int main(int argc, char **argv)
         return 1;
     }
 
-    if (strcmp(argv[1], "text") == 0)
+    void *library = dlopen(argv[3], RTLD_LAZY);
+
+    if (!library)
     {
-        only_text_plugin(html, html_size, file);
-    }
-    else if (strcmp(argv[1], "headers") == 0)
-    {
-        headers_plugin(html, html_size, file);
-    }
-    else if (strcmp(argv[1], "links") == 0)
-    {
-        links_plugin(html, html_size, file);
-    }
-    else
-    {
-        fprintf(stderr, "Unknown plugin: %s\n", argv[1]);
+        fprintf(stderr, "Failed to load library: %s\n", dlerror());
+        fclose(file);
+        free(html);
         return 1;
     }
-
+    PluginFunction plugin_function = (PluginFunction)dlsym(library, argv[1]);
+    plugin_function(html, html_size, file);
+    dlclose(library);
     fclose(file);
 
     free(html);

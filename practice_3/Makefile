@@ -1,24 +1,18 @@
 TARGET = main
-
 CC = gcc
-
 CFLAGS = -Wall -Wextra
-
 RM = rm -rf
-
-SRCS = main.c
-
+SRCS = main.c plugins.c
 OBJS = $(SRCS:.c=.o)
-
-LIBRARY = plugins.a
+LIBRARY = plugins.so
 
 all: $(TARGET)
 
 $(TARGET): $(OBJS) $(LIBRARY)
-	$(CC) $(CFLAGS) $(OBJS) -L. -lplugins -o $@
+	$(CC) $(CFLAGS) $(OBJS) -o $@
 
 $(LIBRARY): plugins.o
-	ar rcs $@ $^
+	$(CC) $(CFLAGS) -shared -o $@ $^
 
 %.o: %.c include/*.h
 	$(CC) $(CFLAGS) -c $< -o $@
